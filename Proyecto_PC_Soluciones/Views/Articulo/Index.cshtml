@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Proyecto_PC_Soluciones.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Agregar Nuevo Articulo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pre_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock_articulo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock_articulo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id_articulo }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
