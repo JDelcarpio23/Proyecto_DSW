@@ -1,0 +1,62 @@
+@model IEnumerable<Proyecto_PC_Soluciones.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Pedido";
+}
+
+<h1>Pedido</h1>
+
+<div>
+    <form asp-action="Pedido">
+        <em>Desde</em><input type="date" name="f1" value="@ViewBag.f1"/>
+        <br />
+        <em>Hasta</em><input type="date" name="f2" value="@ViewBag.f2"/>
+
+        <button>Procesar</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_venta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_venta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dni_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_venta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_venta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
