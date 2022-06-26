@@ -3,12 +3,20 @@ using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Session;
 using System.Data;
 using Proyecto_PC_Soluciones.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace Proyecto_PC_Soluciones.Controllers
 {
     public class LoginController : Controller
     {
+<<<<<<< HEAD
         const string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
+=======
+        const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
+>>>>>>> 4d36022ceca9fabafe87fac3ff24325c622199d1
         string sesion = "";
 
         string Ingreso(string usuario, string clave)
@@ -36,6 +44,37 @@ namespace Proyecto_PC_Soluciones.Controllers
                 return ingreso;
             }
         }
+
+        IEnumerable<Usuarios> ListaUsuario()
+        {
+            List<Usuarios> temporal = new List<Usuarios>();
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_valida_usuario", cn);
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Usuarios obj = new Usuarios()
+                    {
+                        id_usuario = dr.GetInt32(0),
+                        nom_usuario = dr.GetString(1),
+                        dni_usuario = dr.GetString(2),
+                        user_usuario = dr.GetString(3),
+                        pass_usuario = dr.GetString(4),
+                        id_tipo_usuario = dr.GetInt32(5),
+                    };
+                    temporal.Add(obj);
+                }
+            }
+            return temporal;
+        }
+
+        Usuarios ValidarUsuario(string usuario, string clave)
+        {
+            return ListaUsuario().Where(u => u.user_usuario == usuario && u.pass_usuario == clave).FirstOrDefault();
+        }
+
         public async Task<IActionResult> Inicio()
         {
             HttpContext.Session.SetString(sesion, "");
@@ -50,14 +89,49 @@ namespace Proyecto_PC_Soluciones.Controllers
             }*/
 
             string xusuario = Ingreso(reg.user_usuario, reg.pass_usuario);
+            var _usuario = ValidarUsuario(reg.user_usuario, reg.pass_usuario);
+
+            if (_usuario != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, _usuario.nom_usuario),
+                    new Claim("user_usuario", _usuario.user_usuario)
+                };
+
+                if (_usuario.id_tipo_usuario == 1)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, "Cliente"));
+                }
+
+                if (_usuario.id_tipo_usuario == 2) { 
+                    claims.Add(new Claim(ClaimTypes.Role, "Administrador"));
+                }
+                
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                HttpContext.Session.SetString(sesion, xusuario);
+            }
+
             if (string.IsNullOrEmpty(xusuario))
             {
                 ModelState.AddModelError("", "Usuario o Clave Incorrecta");
                 return View(await Task.Run(() => reg));
             }
 
-            HttpContext.Session.SetString(sesion, xusuario);
-            return RedirectToAction("Portal", "ECommerce");
+            if (_usuario.id_tipo_usuario == 1)
+            {
+                return RedirectToAction("Portal", "ECommerce");
+            }
+
+            if (_usuario.id_tipo_usuario == 2)
+            {
+                return RedirectToAction("Index", "Articulo");
+            }
+
+                return RedirectToAction("Portal", "ECommerce");
         }
         public IActionResult Plataforma()
         {
@@ -95,6 +169,14 @@ namespace Proyecto_PC_Soluciones.Controllers
             return View(await Task.Run(() => reg));
 
         }
+
+        public async Task<IActionResult> CerrarSesion()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Inicio", "Login");
+        }
+
         public IActionResult Index()
         {
             return View();
