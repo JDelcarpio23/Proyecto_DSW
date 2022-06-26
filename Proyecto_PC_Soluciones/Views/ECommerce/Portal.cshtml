@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Proyecto_PC_Soluciones.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Portal";
+}
+<link rel="stylesheet" href="~/css/estilos.css" />
+<h1>Portal de Ventas</h1>
+
+<p>
+    <a asp-action="Carrito" asp-controller="ECommerce" class="btn btn-danger">Ir al Carrito</a>
+</p>
+<div class="portal">
+@foreach (var item in Model) {
+        <div class="registro">
+            <em>Codigo: </em>@Html.DisplayFor(modelItem => item.id_articulo)
+            <br/>
+
+            <em>Descripcion: </em>@Html.DisplayFor(modelItem => item.nom_articulo)
+            <br/>
+
+            <em>Precio: </em>@Html.DisplayFor(modelItem => item.pre_articulo)
+            <br/>
+
+            <em>Stock: </em>@Html.DisplayFor(modelItem => item.stock_articulo)
+            <br/>
+
+            <img src="@Url.Content($"~/imagenes/{item.id_articulo}.jpg")"/>
+            <br>
+            @Html.ActionLink("Agregar", "Agregar", new{id=item.id_articulo}, new{@class=(item.stock_articulo == 0 ? "deshabilita" : "")})
+        </div>
+}
+</div>

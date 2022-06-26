@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Proyecto_PC_Soluciones.Models.Registro>
+
+@{
+    ViewData["Title"] = "Pedido";
+}
+
+<h1>Confirmación de Pedido</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pre_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monto)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+        </tr>
+}
+     <tr>
+        <td colspan="4">Monto Total del Pedido</td>
+        <td>@Model.Sum(x => x.monto)</td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <h2>Registro de Datos del Cliente</h2>
+    <form asp-action="Pedido" asp-controller="ECommerce" method="post">
+        <table>
+            <tr>
+                <td>Ingrese su DNI</td>
+                <td>@Html.TextBox("dni","")</td>
+            </tr>
+            <tr>
+                <td>Ingrese su nombre</td>
+                <td>@Html.TextBox("nombre","")</td>
+            </tr>
+            <tr>
+                <td><a asp-action="Portal" class="btn btn-primary">Seguir Comprando</a></td>
+                <td><input type="submit" value="Procesar" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </form>
+</div>

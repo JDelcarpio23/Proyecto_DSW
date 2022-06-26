@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Proyecto_PC_Soluciones.Models.Registro>
+
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<h1>Carrito de Compras</h1>
+
+<p>
+    <a asp-action="Portal" class="btn btn-primary">Seguir Comprando</a>
+    <a asp-action="Pedido" class="btn btn-primary">Registrar Pedido</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pre_articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pre_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_articulo })
+            </td>
+        </tr>
+}
+    <tr>
+        <td colspan=4 style="text-align:right"> Monto Total del Pedido</td>
+        <td>@Model.Sum(p => p.monto)</td>
+    </tr>
+    </tbody>
+</table>
