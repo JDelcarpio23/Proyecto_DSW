@@ -10,11 +10,8 @@ namespace Proyecto_PC_Soluciones.Controllers
 {
     public class ECommerceController : Controller
     {
-<<<<<<< HEAD
         const string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
-=======
-        const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
->>>>>>> 4d36022ceca9fabafe87fac3ff24325c622199d1
+
         string sesion = "";
 
         [Authorize(Roles = "Cliente")]
