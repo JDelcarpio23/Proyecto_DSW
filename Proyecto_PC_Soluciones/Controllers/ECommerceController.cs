@@ -5,14 +5,15 @@ using Microsoft.AspNetCore.Session;
 using System.Data;
 using Newtonsoft.Json;
 using Proyecto_PC_Soluciones.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace Proyecto_PC_Soluciones.Controllers
 {
     public class ECommerceController : Controller
     {
-        const string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
+        const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         string sesion = "";
 
+        [Authorize(Roles = "Cliente")]
         IEnumerable<Articulo> articulo()
         {
             List<Articulo> temporal = new List<Articulo>();

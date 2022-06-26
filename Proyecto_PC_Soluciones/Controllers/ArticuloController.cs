@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc.Rendering; //selectList
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Proyecto_PC_Soluciones.Models;
+using Microsoft.AspNetCore.Authorization;
 namespace Proyecto_PC_Soluciones.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ArticuloController : Controller
     {
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
+        string cadena = @"server=BRYAN; database=ProyectoVisual; " +
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {

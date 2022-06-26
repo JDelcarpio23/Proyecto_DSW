@@ -1,0 +1,173 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proyecto_PC_Soluciones</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Proyecto_PC_Soluciones.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                @if (!(User.IsInRole("Administrador") || User.IsInRole("Cliente")))
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PC Soluciones</a>
+                }
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Articulo" asp-action="Index">PC Soluciones</a>
+                }
+                @if (User.IsInRole("Cliente"))
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="ECommerce" asp-action="Portal">PC Soluciones</a>
+                }
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (!(User.IsInRole("Administrador") || User.IsInRole("Cliente")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Nosotros">Quienes Somos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Articulos">Catálogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" data-toggle="modal" data-target="#exampleModal2" href="#contactar">Contacto</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Cliente"))
+                        {
+                            @*SOLO LO VERÁ EN CLIENTE*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Nosotros">Quienes Somos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Articulos">Catálogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" data-toggle="modal" data-target="#exampleModal2" href="#contactar">Contacto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ECommerce" asp-action="Portal">Portal</a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            @*SOLO LO VERÁ EL ADMIN*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Articulo" asp-action="Index">Listado de Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Articulo" asp-action="Create">Agregar Producto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Articulo" asp-action="Edit">Actualizar Producto</a>
+                            </li>
+                        }
+
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <ul class="navbar-nav mr-auto">
+                            @if (User.IsInRole("Administrador") || User.IsInRole("Cliente"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="CerrarSesion">Cerrar Sesión</a>
+                                </li>
+                            }
+                            @if (!(User.IsInRole("Administrador") || User.IsInRole("Cliente")))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Inicio">Iniciar Sesión</a>
+                                </li>
+                            }
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Contacto de Clientes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-primary alert-dismissible fade show text-left" role="alert">
+                        <strong>Info!</strong> Si tienes alguna pregunta no dudes en contactarnos. Estaremos atentos a responder cualquier inquietud que tengas.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <h6>Nombre Completo</h6>
+                    <div class="input-group mb-3">
+
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombres Apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <h6>Email</h6>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                        </div>
+                        <input type="email" id="mail" class="form-control" placeholder="Correo Electrónico" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <h6>Mensaje</h6>
+                    <div class="input-group">
+
+                        <textarea class="form-control" id="campo" aria-label="With textarea"></textarea>
+                    </div>
+
+
+                </div>
+                <div id="boton" class="modal-footer text-left">
+
+                    <input type="submit" value="Contactar" id="contactar" class="btn btn-primary" data-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/indexjs.js"></script>
+
+    <!--<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Proyecto_PC_Soluciones - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
