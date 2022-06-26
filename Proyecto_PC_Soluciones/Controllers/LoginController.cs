@@ -12,7 +12,7 @@ namespace Proyecto_PC_Soluciones.Controllers
 {
     public class LoginController : Controller
     {
-        const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
+        const string cadena = @"server=DESKTOP-G26NTVM; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         string sesion = "";
 
         string Ingreso(string usuario, string clave)

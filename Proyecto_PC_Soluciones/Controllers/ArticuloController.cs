@@ -9,7 +9,7 @@ namespace Proyecto_PC_Soluciones.Controllers
     [Authorize(Roles = "Administrador")]
     public class ArticuloController : Controller
     {
-        string cadena = @"server=BRYAN; database=ProyectoVisual; " +
+        string cadena = @"server=DESKTOP-G26NTVM; database=ProyectoVisual; " +
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {

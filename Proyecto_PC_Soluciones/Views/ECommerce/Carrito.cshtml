@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.monto)
             </td>
             <td>
-                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_articulo })
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_articulo }, new { @class = "btn btn-raised btn-secondary" })
             </td>
         </tr>
 }
