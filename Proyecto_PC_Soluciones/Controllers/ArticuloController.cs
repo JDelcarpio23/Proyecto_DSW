@@ -7,7 +7,7 @@ namespace Proyecto_PC_Soluciones.Controllers
 {
     public class ArticuloController : Controller
     {
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
+        string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; " +
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {
