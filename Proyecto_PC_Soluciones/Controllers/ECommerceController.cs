@@ -11,8 +11,12 @@ namespace Proyecto_PC_Soluciones.Controllers
     public class ECommerceController : Controller
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         const string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
 
+=======
+        const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
+>>>>>>> 429ef7c0bfb738c993617c072373dee49aa10b3a
 =======
         const string cadena = @"server=BRYAN; database=ProyectoVisual; Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
 >>>>>>> 429ef7c0bfb738c993617c072373dee49aa10b3a

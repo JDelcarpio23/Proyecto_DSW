@@ -10,7 +10,11 @@ namespace Proyecto_PC_Soluciones.Controllers
     public class ArticuloController : Controller
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; " +
+=======
+        string cadena = @"server=BRYAN; database=ProyectoVisual; " +
+>>>>>>> 429ef7c0bfb738c993617c072373dee49aa10b3a
 =======
         string cadena = @"server=BRYAN; database=ProyectoVisual; " +
 >>>>>>> 429ef7c0bfb738c993617c072373dee49aa10b3a
