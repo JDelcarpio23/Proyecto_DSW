@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Listado de artículos</h1>
 
 <p>
-    <a asp-action="Create">Agregar Nuevo Articulo</a>
+    <a class="btn btn-primary" asp-action="Create">Agregar Nuevo Articulo</a>
 </p>
 <table class="table">
     <thead>
@@ -44,7 +44,8 @@
                 @Html.DisplayFor(modelItem => item.stock_articulo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id_articulo }) 
+                @Html.ActionLink("Editar", "Edit", new { id=item.id_articulo }, new { @class = "btn btn-raised btn-secondary" }) 
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_articulo }, new { @class = "btn btn-raised btn-secondary" }) 
             </td>
         </tr>
 }

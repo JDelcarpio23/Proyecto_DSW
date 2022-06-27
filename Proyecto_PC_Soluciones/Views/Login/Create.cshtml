@@ -3,48 +3,78 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Registro de Usuario</h1>
+<div id="fondo">
+<h1 style="color:#FDFEFE; text-align:center">Registro de Usuario</h1>
 
 <hr />
-<div class="row">
+<div class="row reg">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="nom_usuario" class="control-label"></label>
+                <label asp-for="nom_usuario" class="control-label" style="color: white"></label>
                 <input asp-for="nom_usuario" class="form-control" />
                 <span asp-validation-for="nom_usuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="dni_usuario" class="control-label"></label>
+                <label asp-for="dni_usuario" class="control-label" style="color: white"></label>
                 <input asp-for="dni_usuario" class="form-control" />
                 <span asp-validation-for="dni_usuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="user_usuario" class="control-label"></label>
+                <label asp-for="user_usuario" class="control-label" style="color: white"></label>
                 <input asp-for="user_usuario" type="email" class="form-control" />
                 <span asp-validation-for="user_usuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="pass_usuario" class="control-label"></label>
+                <label asp-for="pass_usuario" class="control-label" style="color: white"></label>
                 <input asp-for="pass_usuario" type="password" class="form-control" />
                 <span asp-validation-for="pass_usuario" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Registrar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <div>
-    <p>Si ya tienes una cuenta: <a asp-action="Inicio">Logueate</a></p>
+    <p style="color:#FDFEFE ">Si ya tienes una cuenta: <a class="btn btn-primary" asp-action="Inicio">Logueate</a></p>
     
     <br />
     @ViewBag.mensaje
 </div>
-
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<style>
+.reg {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fondo{
+    width: 1150px;
+    height: 750px;
+    background-image: url(https://img.freepik.com/foto-gratis/fondo-estudio-oscuro_1258-14.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+
+p {
+  text-align: center;
+}
+
+</style>

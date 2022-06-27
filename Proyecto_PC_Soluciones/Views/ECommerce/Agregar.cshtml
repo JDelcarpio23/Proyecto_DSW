@@ -4,7 +4,7 @@
     ViewData["Title"] = "Agregar";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-
+<div>
 <h1>Agregar</h1>
 <h4>Articulo</h4>
 <hr />
@@ -35,6 +35,20 @@
 <div>
     @ViewBag.mensaje
 </div>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<style>
+.agregar {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+</style>
