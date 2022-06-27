@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Proyecto_PC_Soluciones.Models.Usuarios>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h1>Listado de Usuarios</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nom_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dni_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pass_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_tipo_usuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pass_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_tipo_usuario)
+            </td>
+            <td>
+                @Html.ActionLink("Actualizar", "Edit", new { id=item.id_usuario }, new { @class = "btn btn-raised btn-secondary" })
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_usuario }, new { @class = "btn btn-raised btn-secondary" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
