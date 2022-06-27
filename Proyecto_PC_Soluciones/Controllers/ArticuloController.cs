@@ -10,43 +10,8 @@ namespace Proyecto_PC_Soluciones.Controllers
     [Authorize(Roles = "Administrador")]
     public class ArticuloController : Controller
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; " +
-=======
-=======
->>>>>>> ef55cbabe9b5b260fb510dd6b44195a6ef21c1a6
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
 
->>>>>>> ef55cbabe9b5b260fb510dd6b44195a6ef21c1a6
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
-=======
-        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
->>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {
