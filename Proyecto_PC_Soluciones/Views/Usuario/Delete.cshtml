@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
 <h1>Eliminar</h1>
@@ -48,7 +49,7 @@
         </dd>
     </dl>    
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="submit" value="Confirmar" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-primary">Retornar</a>
     </form>
 </div>

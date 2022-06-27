@@ -1,0 +1,47 @@
+﻿@model Proyecto_PC_Soluciones.Models.Articulo
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<h1>Eliminar</h1>
+
+<h3>¿Está seguro de eliminar este artículo?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_articulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_articulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nom_articulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nom_articulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pre_articulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pre_articulo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.stock_articulo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.stock_articulo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Confirmar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Retornar</a>
+    </form>
+</div>
+<div>
+    @ViewBag.mensaje
+</div>

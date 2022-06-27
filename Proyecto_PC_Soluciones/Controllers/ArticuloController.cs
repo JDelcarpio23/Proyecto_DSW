@@ -34,9 +34,9 @@ namespace Proyecto_PC_Soluciones.Controllers
             }
             return temporal;
         }
-        Articulo Buscar(int codigo)
+        Articulo Buscar(int id)
         {
-            return articulos().Where(c => c.id_articulo == codigo).FirstOrDefault();
+            return articulos().Where(c => c.id_articulo == id).FirstOrDefault();
         }
         public async Task<IActionResult> Index()
         {
@@ -70,10 +70,10 @@ namespace Proyecto_PC_Soluciones.Controllers
             ViewBag.mensaje = mensaje;
             return View(await Task.Run(() => reg));
         }
-        public async Task<IActionResult> Edit(int codigo)
+        public async Task<IActionResult> Edit(int id)
         {
             // si no esta vacio id
-            Articulo reg = Buscar(codigo);
+            Articulo reg = Buscar(id);
 
             return View(await Task.Run(() => reg));
         }
@@ -102,7 +102,31 @@ namespace Proyecto_PC_Soluciones.Controllers
             ViewBag.mensaje = mensaje;
             return View(await Task.Run(() => reg));
         }
+        public async Task<IActionResult> Delete(int id)
+        {
+            Articulo reg = Buscar(id);
+            return View(await Task.Run(() => reg));
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(Articulo reg, int id)
+        {
+            string mensaje = "";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("delete from tb_articulo Where id_articulo = " + id, cn);
+                    cn.Open();
 
+                    int c = cmd.ExecuteNonQuery();
+                    mensaje = $"Se ha eliminado {c} articulo";
+                }
+                catch (Exception ex) { mensaje = ex.Message; }
+                finally { cn.Close(); }
+            }
+            ViewBag.mensaje = mensaje;
+            return View(await Task.Run(() => reg));
+        }
 
 
 
