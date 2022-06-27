@@ -5,10 +5,12 @@ using System.Data;
 using Proyecto_PC_Soluciones.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace Proyecto_PC_Soluciones.Controllers
+
 {
     [Authorize(Roles = "Administrador")]
     public class ArticuloController : Controller
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         string cadena = @"server=JDelcarpio-I7; database=ProyectoVisual; " +
@@ -18,6 +20,9 @@ namespace Proyecto_PC_Soluciones.Controllers
         string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
 
 >>>>>>> ef55cbabe9b5b260fb510dd6b44195a6ef21c1a6
+=======
+        string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
+>>>>>>> 5385f06133b54d84ba295965a4b83e6f520cc414
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {
@@ -82,7 +87,6 @@ namespace Proyecto_PC_Soluciones.Controllers
             // si no esta vacio id
             Articulo reg = Buscar(codigo);
 
-            //enviar el Cliente
             return View(await Task.Run(() => reg));
         }
         [HttpPost]
@@ -110,6 +114,9 @@ namespace Proyecto_PC_Soluciones.Controllers
             ViewBag.mensaje = mensaje;
             return View(await Task.Run(() => reg));
         }
+
+
+
 
 
     }
