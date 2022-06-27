@@ -45,6 +45,7 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id=item.id_articulo }, new { @class = "btn btn-raised btn-secondary" }) 
+                @Html.ActionLink("Eliminar", "Delete", new { id=item.id_articulo }, new { @class = "btn btn-raised btn-secondary" }) 
             </td>
         </tr>
 }
