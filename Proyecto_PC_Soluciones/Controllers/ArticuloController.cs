@@ -5,12 +5,12 @@ using System.Data;
 using Proyecto_PC_Soluciones.Models;
 using Microsoft.AspNetCore.Authorization;
 namespace Proyecto_PC_Soluciones.Controllers
+
 {
     [Authorize(Roles = "Administrador")]
     public class ArticuloController : Controller
     {
         string cadena = @"server=DESKTOP-V44JFQH\SQLEXPRESS; database=ProyectoVisual; " +
-
         "Trusted_Connection=True; MultipleActiveResultSets=True; TrustServerCertificate=False; Encrypt=False";
         IEnumerable<Articulo> articulos()
         {
@@ -75,7 +75,6 @@ namespace Proyecto_PC_Soluciones.Controllers
             // si no esta vacio id
             Articulo reg = Buscar(codigo);
 
-            //enviar el Cliente
             return View(await Task.Run(() => reg));
         }
         [HttpPost]
@@ -103,6 +102,9 @@ namespace Proyecto_PC_Soluciones.Controllers
             ViewBag.mensaje = mensaje;
             return View(await Task.Run(() => reg));
         }
+
+
+
 
 
     }
